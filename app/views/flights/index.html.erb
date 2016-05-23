@@ -1,0 +1,29 @@
+<%= form_tag(root_url, method: "get") do %>
+
+  <%= label_tag(:departure_airport_id, "Departure airport:") %>
+  <%= select_tag(:departure_airport_id, options_for_select(@airport_options,
+                 @departure_airport_choice)) %>
+  
+  <%= label_tag(:arrival_airport_id, "Arrival airport:") %>
+  <%= select_tag(:arrival_airport_id, options_for_select(@airport_options,
+                 @arrival_airport_choice)) %>
+  
+  <%= label_tag(:departure_time, "Departure date:") %>
+  <%= select_tag(:departure_time, options_for_select(@departure_options, 
+                 @depart_date_choice)) %>
+  
+  <%= label_tag(:passengers, "Number of passengers") %>
+  <%= select_tag(:passengers, options_for_select(@passenger_options,
+                 @passengers_choice)) %>
+  
+  <%= submit_tag "Search" %>
+
+<% end %>
+
+
+<% @flights.each do |f| %>
+  
+  <%= f.arrival_airport.airport_code %>
+  <%= f.departure_time %>
+  
+<% end %> 
