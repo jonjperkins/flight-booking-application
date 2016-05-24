@@ -12,6 +12,12 @@ class Flight < ActiveRecord::Base
   
   def self.date_list
 		dates = Flight.all.order(departure_time: :asc)
+		# we can't use the regular method for creating nested arrays for options_for_select
+		#because we need unique dates in our dropdown menu, this is why the
+		#class method self.correct_date(date) exists below - to send the correct
+		#date format for the active record query. Further, we need to convert the 
+		#dates to a range that encapsulates the entire day on which that departure_time
+		#falls on.
 		dates.map {|n| n.departure_time.strftime("%d/%m/%Y") }.uniq
   end
 
