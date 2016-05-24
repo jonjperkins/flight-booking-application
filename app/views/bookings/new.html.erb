@@ -36,12 +36,12 @@
     
     <%= b.label :email %>
     <%= b.email_field :email %>
-    <%= b.hidden_field :flight_id, value: params[:flight_id] %>
     
   <% end %>  
-  
+    
+    <%= hidden_field_tag(:passengers, params[:passengers]) %>
+    <%= f.hidden_field :flight_id, value: params[:flight_id] %>
     <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
     <%= f.submit "Submit booking" %> 
   
 <% end %>  
-    

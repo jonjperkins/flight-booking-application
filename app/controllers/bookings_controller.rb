@@ -10,7 +10,8 @@ class BookingsController < ApplicationController
     def create
       @booking = Booking.new(booking_params)
       if @booking.save
-        render 'booking/show'
+        render 'bookings/show'
+      else
         @flight = Flight.find(params[:flight_id])
         render 'new'
       end
