@@ -2,13 +2,15 @@ class BookingsController < ApplicationController
     
     def new
       @flight = Flight.find(params[:flight_id])
+      #controller builds number of children equal to passengers param, eg 'passenger number' sets of passenger forms being rendered on booking object 
       @booking = Booking.new
-      params[:passengers].to_i.times { @booking.passengers.build }
+      params[:passengers].to_i.times { @booking.passengers.build } #see rails guides form helpers 9.3 
     end
     
     def create
       @booking = Booking.new(booking_params)
-      unless @booking.save
+      if @booking.save
+        render 'booking/show'
         @flight = Flight.find(params[:flight_id])
         render 'new'
       end

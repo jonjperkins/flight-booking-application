@@ -23,3 +23,25 @@
   </tbody> 
     
 </table>
+
+<%= form_for @booking do |f| %>
+  <% number = 1 %>
+  
+  <%= f.fields_for :passengers do |b| %>
+    <p>Passenger <%= number %></p>
+    <% number += 1 %>
+    
+    <%= b.label :name %>
+    <%= b.text_field :name %>
+    
+    <%= b.label :email %>
+    <%= b.email_field :email %>
+    <%= b.hidden_field :flight_id, value: params[:flight_id] %>
+    
+  <% end %>  
+  
+    <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
+    <%= f.submit "Submit booking" %> 
+  
+<% end %>  
+    

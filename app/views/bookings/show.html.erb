@@ -1,0 +1,31 @@
+<h3>Flight Details</h3>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Booking Number:</th>
+					<th>Departing Airport</th>
+					<th>Destination Airport</th>
+					<th>Departure Date</th>
+					<th>Departure Time</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><%= @booking.id %></td>
+					<td><%= @booking.flight.departure_airport.airport_code %></td>
+					<td><%= @booking.flight.arrival_airport.airport_code %></td>
+					<td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
+					<td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	<%= "Passenger".pluralize(@booking.passengers.count) %>
+	  <% @booking.passengers.each do |p| %>
+	    <%= p.name %>
+	    <%= p.email %>
+	  <% end %> 
+
+    
