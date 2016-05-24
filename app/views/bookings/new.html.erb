@@ -1,0 +1,25 @@
+<h2>Passenger Details</h2>
+<p>Please enter passenger details for flight:</p>
+
+<table>
+  <thead>
+    <tr>
+        <th>Flight number</th>
+        <th>Departure airport</th>
+        <th>Arrival airport</th>
+        <th>Departure date</th>
+        <th>Departure time</th>
+    </tr>
+  </thead> 
+  
+  <tbody>
+    <tr>
+      <th><%= @flight.id %></th>
+      <th><%= @flight.departure_airport.airport_code %></th>
+      <th><%= @flight.arrival_airport.airport_code %></th>
+      <th><%= @flight.departure_time.strftime('%m/%d/%Y') %></th>
+      <th><%= @flight.departure_time.strftime('%H:%M') %></th>
+    </tr>
+  </tbody> 
+    
+</table>
