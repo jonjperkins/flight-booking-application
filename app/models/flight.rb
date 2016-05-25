@@ -4,6 +4,11 @@ class Flight < ActiveRecord::Base
     has_many :passengers, through: :passenger_bookings
     has_many :bookings
     
+    validates :departure_airport, presence: true
+    validates :arrival_airport, presence: true
+    validates :passengers, presence: true
+    validates :departure_time, presence: true
+    
   def self.search(depart, arrival, date)
 		Flight.where(departure_airport_id: depart, 
 					 arrival_airport_id: arrival,

@@ -29,8 +29,12 @@
 
 <h2>Please enter flight details below</h2>
 
+
+
+
 <%= form_for @booking do |f| %>
   <div class="form-group col-sm-6 col-sm-offset-3">
+    <%= render 'shared/error_messages' %>
   <% number = 1 %>
   
   <%= f.fields_for :passengers do |b| %>
@@ -50,6 +54,7 @@
     
     <%= hidden_field_tag(:passengers, params[:passengers]) %>
     <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+    <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
 <br>
     
     <%= f.submit "Submit booking", class: "btn btn-primary" %> 

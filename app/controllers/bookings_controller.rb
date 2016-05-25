@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
         redirect_to @booking
       else
         @flight = Flight.find(params[:flight_id])
+        
         render 'new'
       end
     end

@@ -3,6 +3,8 @@ class Booking < ActiveRecord::Base
     has_many :passengers, through: :passenger_bookings
     has_many :passenger_bookings
     
+    validates :flight_id, presence: true
+    
     accepts_nested_attributes_for :passengers
     
 end
