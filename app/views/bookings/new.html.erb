@@ -1,7 +1,8 @@
-<h2>Passenger Details</h2>
-<p>Please enter passenger details for flight:</p>
+<h1>Your flight</h1>
+<div class = "col-sm-8 col-sm-offset-2">
 
-<table>
+
+<table class = "table table-hover table-bordered">
   <thead>
     <tr>
         <th>Flight number</th>
@@ -25,23 +26,28 @@
 </table>
 
 <%= form_for @booking do |f| %>
+  <div class="form-group col-sm-6 col-sm-offset-3">
   <% number = 1 %>
   
   <%= f.fields_for :passengers do |b| %>
-    <p>Passenger <%= number %></p>
+    <h3>Passenger <%= number %></h3>
+    
     <% number += 1 %>
     
+    <fieldset>
     <%= b.label :name %>
-    <%= b.text_field :name %>
+    <%= b.text_field :name, class: "form-control" %>
+    </fieldset>
     
     <%= b.label :email %>
-    <%= b.email_field :email %>
-    
+    <%= b.email_field :email, class: "form-control" %>
+  
   <% end %>  
     
     <%= hidden_field_tag(:passengers, params[:passengers]) %>
-    <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+    <%= f.hidden_field :flight_id, value: params[:flight_id] %><br>
     
-    <%= f.submit "Submit booking" %> 
-  
+    <%= f.submit "Submit booking", class: "btn btn-primary" %> 
 <% end %>  
+</div>
+</div>
