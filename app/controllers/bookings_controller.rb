@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     def create
       @booking = Booking.new(booking_params)
       if @booking.save
-        render 'bookings/show'
+        redirect_to @booking
       else
         @flight = Flight.find(params[:flight_id])
         render 'new'

@@ -1,13 +1,16 @@
-<h3>Flight Details</h3>
-
+<h1>Your flight is booked!</h1>
+<h1><i class="glyphicon glyphicon-ok"></i></h1>
+<h2>Get ready for your trip.</h2>
+<div class = "col-sm-8 col-sm-offset-2">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Booking Number:</th>
+					<th>Booking Number</th>
 					<th>Departing Airport</th>
 					<th>Destination Airport</th>
 					<th>Departure Date</th>
 					<th>Departure Time</th>
+					<th>Duration</th>
 				</tr>
 			</thead>
 
@@ -18,14 +21,31 @@
 					<td><%= @booking.flight.arrival_airport.airport_code %></td>
 					<td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
 					<td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
+					<td><%= @booking.flight.duration %> hours</td>
 				</tr>
 			</tbody>
 		</table>
 	
-	<%= "Passenger".pluralize(@booking.passengers.count) %>
-	  <% @booking.passengers.each do |p| %>
-	    <%= p.name %>
-	    <%= p.email %>
-	  <% end %> 
+	<h2><%= "Passenger".pluralize(@booking.passengers.count) %></h2>
+	  <div class="col-sm-6 col-sm-offset-3">
+	  <table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <% @booking.passengers.each do |p| %>
+            <td><%= p.name %></td>
+            <td><%= p.email %></td>
+          <% end %>
+        </tr>
+    </tbody>
+</table>
+</div>
+	    
+	  
 
-    
+</div>    

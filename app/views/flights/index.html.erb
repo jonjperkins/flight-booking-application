@@ -1,11 +1,13 @@
-
+<h1>Where would you like to go?</h1>
 <div class = "col-sm-8 col-sm-offset-2">
 <%= form_tag(root_url, method: "get") do %>
+
+<div class="well">
 <fieldset>
 <div class="form-group col-sm-4 col-sm-offset-2">
 
   <i class="glyphicon glyphicon-arrow-up"></i>
-  <%= label_tag(:departure_airport_id, "Flying from") %>
+  <%= label_tag(:departure_airport_id, "I want to fly from") %>
   
   <%= select_tag(:departure_airport_id, options_for_select(@airport_options,
                  @departure_airport_choice), class: "form-control") %>
@@ -13,7 +15,7 @@
 
 <div class="form-group col-sm-4">
     <i class="glyphicon glyphicon-arrow-down"></i>
-  <%= label_tag(:arrival_airport_id, "Arriving at") %>
+  <%= label_tag(:arrival_airport_id, "And arrive at") %>
   <%= select_tag(:arrival_airport_id, options_for_select(@airport_options,
                  @arrival_airport_choice), class: "form-control") %>
 </div> 
@@ -21,7 +23,7 @@
 <fieldset>
 <div class="form-group col-sm-4 col-sm-offset-2">
     <i class="glyphicon glyphicon-calendar"></i>
-  <%= label_tag(:departure_time, "Departure date:") %>
+  <%= label_tag(:departure_time, "Departure date") %>
   <%= select_tag(:departure_time, options_for_select(@departure_options, 
                  @depart_date_choice), class: "form-control") %>
 </div>
@@ -40,20 +42,22 @@
 
 <% end %>
 </div>
+</div>
 
 <div class = "col-sm-8 col-sm-offset-2">
 <% if @flights.present? %>
 <table class = "table table-hover table-bordered">
-   <caption>Book a flight</caption>
+   <h1>Book a flight</h1>
    
   <thead>
     <tr>
 	  <th></th>
-      <th>Flight No:</th>
-	  <th>Departing From:</th>
+      <th>Flight No.</th>
+	  <th>Departing From</th>
 	  <th>Destination</th>
-	  <th>Date:</th>
-	  <th>Time:</th>
+	  <th>Date</th>
+	  <th>Departure time</th>
+	  <th>Duration</th>
 	</tr>
   </thead>
 	
@@ -69,6 +73,7 @@
 			<td><%= flight.arrival_airport.airport_code %></td>
 			<td><%= flight.departure_time.strftime("%d/%m/%Y") %></td>
 			<td><%= flight.departure_time.strftime("%H:%M") %></td>
+			<td><%= flight.duration %> hours</td>
 		  </tr>
 		<% end %>
 
