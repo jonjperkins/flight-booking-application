@@ -14,11 +14,6 @@ class FlightsController < ApplicationController
 		@arrival_airport_choice = params[:arrival_airport_id]
 		@passengers_choice = params[:passengers]
 		@depart_date_choice = params[:departure_time]
-		
-   
-    
-    
-    
     
   end
   
