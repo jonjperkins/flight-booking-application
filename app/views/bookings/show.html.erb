@@ -3,54 +3,62 @@
 
 <h2>Get ready for your trip.</h2>
 <div class = "col-sm-8 col-sm-offset-2">
-	<div class="well">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Booking Number</th>
-					<th>Departing Airport</th>
-					<th>Destination Airport</th>
-					<th>Departure Date</th>
-					<th>Departure Time</th>
-					<th>Duration</th>
-				</tr>
-			</thead>
+  <div class="well">
+	<table class="table table-bordered">
+	  <thead>
+	  	
+	    <tr>
+		  <th>Booking Number</th>
+		  <th>Departing Airport</th>
+		  <th>Destination Airport</th>
+		  <th>Departure Date</th>
+		  <th>Departure Time</th>
+		  <th>Duration</th>
+		</tr>
+		
+	  </thead>
 
-			<tbody>
-				<tr>
-					<td><%= @booking.id %></td>
-					<td><%= @booking.flight.departure_airport.airport_code %></td>
-					<td><%= @booking.flight.arrival_airport.airport_code %></td>
-					<td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
-					<td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
-					<td><%= @booking.flight.duration %> hours</td>
-				</tr>
-			</tbody>
-			
-		</table>
-	</div>
-	<h2><%= "Passenger".pluralize(@booking.passengers.count) %></h2>
-	  <div class="col-sm-6 col-sm-offset-3">
-	  	<div class="well">
+	  <tbody>
+	  	
+		<tr>
+		  <td><%= @booking.id %></td>
+		  <td><%= @booking.flight.departure_airport.airport_code %></td>
+		  <td><%= @booking.flight.arrival_airport.airport_code %></td>
+		  <td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
+	      <td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
+		  <td><%= @booking.flight.duration %> hours</td>
+	    </tr>
+	    
+	  </tbody>
+	</table>
+	
+  </div>
+  <h2><%= "Passenger".pluralize(@booking.passengers.count) %></h2>
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="well">
 	  <table class="table table-bordered">
-    <thead>
-        <tr>
+        <thead>
+          
+          <tr>
             <th>Name</th>
             <th>Email</th>
         </tr>
-    </thead>
-    <tbody>
+        
+        </thead>
+    
+       <tbody>
+          
           <% @booking.passengers.each do |p| %>
+          
             <tr>
-            <td><%= p.name %></td>
-            <td><%= p.email %></td>
+              <td><%= p.name %></td>
+              <td><%= p.email %></td>
+            </tr>
+            
           <% end %>
-        </tr>
-    </tbody>
-</table>
-</div>
-</div>
-	    
-	  
-
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>    

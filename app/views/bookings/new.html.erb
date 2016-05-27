@@ -1,63 +1,61 @@
 <h1>Your flight</h1>
 <div class = "col-sm-8 col-sm-offset-2">
-
-
-<table class = "table table-hover table-bordered">
-  <thead>
-    <tr>
+  <table class = "table table-hover table-bordered">
+    <thead>
+      
+      <tr>
         <th>Flight number</th>
         <th>Departure airport</th>
         <th>Arrival airport</th>
         <th>Departure date</th>
         <th>Departure time</th>
         <th>Duration</th>
-    </tr>
-  </thead> 
+      </tr>
+      
+    </thead> 
   
-  <tbody>
-    <tr>
-      <td><%= @flight.id %></th>
-      <td><%= @flight.departure_airport.airport_code %></th>
-      <td><%= @flight.arrival_airport.airport_code %></th>
-      <td><%= @flight.departure_time.strftime('%m/%d/%Y') %></th>
-      <td><%= @flight.departure_time.strftime('%H:%M') %></th>
-      <td><%= @flight.duration %> hours</td>
-    </tr>
-  </tbody> 
+    <tbody>
+      
+      <tr>
+        <td><%= @flight.id %></th>
+        <td><%= @flight.departure_airport.airport_code %></th>
+        <td><%= @flight.arrival_airport.airport_code %></th>
+        <td><%= @flight.departure_time.strftime('%m/%d/%Y') %></th>
+        <td><%= @flight.departure_time.strftime('%H:%M') %></th>
+        <td><%= @flight.duration %> hours</td>
+      </tr>
+      
+    </tbody> 
     
-</table>
+  </table>
 
-<h2>Please enter flight details below</h2>
+  <h2>Please enter flight details below</h2>
 
-
-
-
-<%= form_for @booking do |f| %>
-  <div class="form-group col-sm-6 col-sm-offset-3">
-    <%= render 'shared/error_messages' %>
-  <% number = 1 %>
+  <%= form_for @booking do |f| %>
+    <div class="form-group col-sm-6 col-sm-offset-3">
+      <%= render 'shared/error_messages' %>
+      <% number = 1 %>
   
-  <%= f.fields_for :passengers do |b| %>
-    <h3>Passenger <%= number %></h3>
+      <%= f.fields_for :passengers do |b| %>
+        <h3>Passenger <%= number %></h3>
+        <% number += 1 %>
+        <div class="well">
+          <fieldset>
+            <%= b.label :name %>
+            <%= b.text_field :name, class: "form-control" %>
+          </fieldset>
     
-    <% number += 1 %>
-    <div class="well">
-    <fieldset>
-    <%= b.label :name %>
-    <%= b.text_field :name, class: "form-control" %>
-    </fieldset>
+            <%= b.label :email %>
+            <%= b.email_field :email, class: "form-control" %>
+          
+        </div>
+      <% end %>  
     
-    <%= b.label :email %>
-    <%= b.email_field :email, class: "form-control" %>
+      <%= hidden_field_tag(:passengers, params[:passengers]) %>
+      <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+      <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
+  <br>
+    <%= f.submit "Submit booking", class: "btn btn-primary" %> 
     </div>
   <% end %>  
-    
-    <%= hidden_field_tag(:passengers, params[:passengers]) %>
-    <%= f.hidden_field :flight_id, value: params[:flight_id] %>
-    <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
-<br>
-    
-    <%= f.submit "Submit booking", class: "btn btn-primary" %> 
-<% end %>  
-</div>
 </div>

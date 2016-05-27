@@ -1,70 +1,66 @@
 <h1>Where would you like to go?</h1>
 <div class = "col-sm-8 col-sm-offset-2">
-<%= form_tag(root_url, method: "get") do %>
+  <%= form_tag(root_url, method: "get") do %>
+    <div class="well">
+      <fieldset>
+        <div class="form-group col-sm-4 col-sm-offset-2">
+          <i class="glyphicon glyphicon-arrow-up"></i>
+          <%= label_tag(:departure_airport_id, "I want to fly from") %>
+          <%= select_tag(:departure_airport_id, options_for_select(@airport_options,
+                                 @departure_airport_choice), class: "form-control") %>
+        </div>
 
-<div class="well">
-<fieldset>
-<div class="form-group col-sm-4 col-sm-offset-2">
+        <div class="form-group col-sm-4">
+          <i class="glyphicon glyphicon-arrow-down"></i>
+          <%= label_tag(:arrival_airport_id, "And arrive at") %>
+          <%= select_tag(:arrival_airport_id, options_for_select(@airport_options,
+                                 @arrival_airport_choice), class: "form-control") %>
+        </div> 
+      </fieldset>
+      
+      <fieldset>
+        <div class="form-group col-sm-4 col-sm-offset-2">
+          <i class="glyphicon glyphicon-calendar"></i>
+          <%= label_tag(:departure_time, "Departure date") %>
+          <%= select_tag(:departure_time, options_for_select(@departure_options, 
+                                  @depart_date_choice), class: "form-control") %>
+        </div>
+       
+        <div class="form-group col-sm-4">  
+          <i class="glyphicon glyphicon-user"></i>
+          <%= label_tag(:passengers, "Passengers") %>
+          <%= select_tag(:passengers, options_for_select(@passenger_options,
+                                  @passengers_choice), class: "form-control") %>
+        </div>
+      </fieldset> 
 
-  <i class="glyphicon glyphicon-arrow-up"></i>
-  <%= label_tag(:departure_airport_id, "I want to fly from") %>
-  
-  <%= select_tag(:departure_airport_id, options_for_select(@airport_options,
-                 @departure_airport_choice), class: "form-control") %>
-</div>
-
-<div class="form-group col-sm-4">
-    <i class="glyphicon glyphicon-arrow-down"></i>
-  <%= label_tag(:arrival_airport_id, "And arrive at") %>
-  <%= select_tag(:arrival_airport_id, options_for_select(@airport_options,
-                 @arrival_airport_choice), class: "form-control") %>
-</div> 
-</fieldset>
-<fieldset>
-<div class="form-group col-sm-4 col-sm-offset-2">
-    <i class="glyphicon glyphicon-calendar"></i>
-  <%= label_tag(:departure_time, "Departure date") %>
-  <%= select_tag(:departure_time, options_for_select(@departure_options, 
-                 @depart_date_choice), class: "form-control") %>
-</div>
-<div class="form-group col-sm-4">  
-  <i class="glyphicon glyphicon-user"></i>
-  <%= label_tag(:passengers, "Passengers") %>
-  <%= select_tag(:passengers, options_for_select(@passenger_options,
-                 @passengers_choice), class: "form-control") %>
-</div>
-</fieldset> 
-<fieldset>  
-<div class= "col-sm-8 col-sm-offset-2">
-<%= submit_tag "Search for flights", class: "btn btn-info" %>
-</div>
-</fieldset>
-
-<% end %>
-</div>
+      <fieldset>  
+        <div class= "col-sm-8 col-sm-offset-2">
+          <%= submit_tag "Search for flights", class: "btn btn-info" %>
+        </div>
+      </fieldset>
+    </div>
+  <% end %>
 </div>
 
 <div class = "col-sm-8 col-sm-offset-2">
-<% if @flights.present? %>
-<table class = "table table-hover table-bordered">
-   <h1>Book a flight</h1>
-   
-  <thead>
-    <tr>
-	  <th></th>
-      <th>Flight No.</th>
-	  <th>Departing From</th>
-	  <th>Destination</th>
-	  <th>Date</th>
-	  <th>Departure time</th>
-	  <th>Duration</th>
-	</tr>
-  </thead>
+  <% if @flights.present? %>
+    <table class = "table table-hover table-bordered">
+      <h1>Book a flight</h1>
+      <thead>
+        <tr>
+	      <th></th>
+            <th>Flight No.</th>
+	        <th>Departing From</th>
+	        <th>Destination</th>
+	        <th>Date</th>
+	        <th>Departure time</th>
+	        <th>Duration</th>
+	    </tr>
+      </thead>
 	
 	<%= form_tag(new_booking_path, method: "get") do %>
-	
 	  <tbody>
-	  
 	    <% @flights.each do |flight| %>
 	      <tr>
 	        <td><%= radio_button_tag(:flight_id, flight.id, class: "flight_select")  %></td>
@@ -76,15 +72,13 @@
 			<td><%= flight.duration %> hours</td>
 		  </tr>
 		<% end %>
+	  </tbody>
+    </table>
 
-    </tbody>
-
-</table>
-<%= hidden_field_tag(:passengers, (params[:passengers])) %>
-<%= submit_tag "Continue", class: "btn btn-primary" %>
-
-<% end %>
+      <%= hidden_field_tag(:passengers, (params[:passengers])) %>
+      <%= submit_tag "Continue", class: "btn btn-primary" %>
   
-</div>
-<% end %>
+    <% end %>
+    </div>
+  <% end %>
 </div>
