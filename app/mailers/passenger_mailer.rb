@@ -3,8 +3,7 @@ class PassengerMailer < ApplicationMailer
     
     def thank_you_email(passenger)
         @passenger = passenger
-        @url = 'http://example.com/login'
-        mail(to: @passenger.email, subject: "Thank you for booking a flight!")
+        mail(to: @passenger.email, subject: "Flight confirmation")
     end
     
 end
