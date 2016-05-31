@@ -16,10 +16,6 @@ class FlightsController < ApplicationController
 		@depart_date_choice = params[:departure_time]
     
   end
-  
-    
-
-  
 end
 
 
