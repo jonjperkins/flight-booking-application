@@ -2,12 +2,14 @@
 
 one:
   departure_airport_id: 1
-  arrival_airport_id: 1
+  arrival_airport_id: 2
   duration: 1
   departure_time: 2016-05-22 17:09:33
+  
 
 two:
   departure_airport_id: 1
   arrival_airport_id: 1
   duration: 1
   departure_time: 2016-05-22 17:09:33
+  
