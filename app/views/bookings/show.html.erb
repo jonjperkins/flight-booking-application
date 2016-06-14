@@ -2,41 +2,42 @@
 <h1><i class="glyphicon glyphicon-ok"></i></h1>
 
 <h2>Get ready for your trip.</h2>
-
-<div class = "col-sm-8 col-sm-offset-2">
   <div class="container">
-    <div class="well">
-      <div class="table-responsive">
-	    <table class="table table-bordered">
-	      <thead>
+    <div class = "col-sm-8 col-sm-offset-2">
+      <div class="well">
+        <div class="table-responsive">
+	      <table class="table table-bordered">
+	        <thead>
 	  	
-	        <tr>
-		      <th>Booking Number</th>
-		      <th>Departing Airport</th>
-		      <th>Destination Airport</th>
-		      <th>Departure Date</th>
-		      <th>Departure Time</th>
-		      <th>Duration</th>
-		    </tr>
+	          <tr>
+		        <th>Booking Number</th>
+		        <th>Departing Airport</th>
+		        <th>Destination Airport</th>
+		        <th>Departure Date</th>
+		        <th>Departure Time</th>
+		        <th>Duration</th>
+		      </tr>
 		
-	      </thead>
+	        </thead>
 
-	      <tbody>
+	        <tbody>
 	  	
-		    <tr>
-		      <td><%= @booking.id %></td>
-		      <td><%= @booking.flight.departure_airport.airport_code %></td>
-		      <td><%= @booking.flight.arrival_airport.airport_code %></td>
-		      <td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
-	          <td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
-		      <td><%= @booking.flight.duration %> hours</td>
-	        </tr>
+		      <tr>
+		        <td><%= @booking.id %></td>
+		        <td><%= @booking.flight.departure_airport.airport_code %></td>
+		        <td><%= @booking.flight.arrival_airport.airport_code %></td>
+		        <td><%= @booking.flight.departure_time.strftime("%d/%m/%Y") %></td>
+	            <td><%= @booking.flight.departure_time.strftime("%H:%M") %></td>
+		        <td><%= @booking.flight.duration %> hours</td>
+	          </tr>
 	    
-	      </tbody>
-	    </table>
+	        </tbody>
+	      </table>
+	    </div>
 	  </div>
 	</div>
   </div>
+  
   <h2><%= "Passenger".pluralize(@booking.passengers.count) %></h2>
   <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
@@ -64,6 +65,5 @@
         </tbody>
       </table>
     </div>
-    <h2>A confirmation e-mail will be sent to you shortly.</h2>
   </div>
 </div>    
