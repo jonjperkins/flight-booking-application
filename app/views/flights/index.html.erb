@@ -43,42 +43,43 @@
   <% end %>
 </div>
 
-<div class = "col-sm-8 col-sm-offset-2">
-  <% if @flights.present? %>
-    <table class = "table table-hover table-bordered">
-      <h1>Book a flight</h1>
-      <thead>
-        <tr>
-	      <th></th>
-            <th>Flight No.</th>
-	        <th>Departing From</th>
-	        <th>Destination</th>
-	        <th>Date</th>
-	        <th>Departure time</th>
-	        <th>Duration</th>
-	    </tr>
-      </thead>
+<div class = "container">
+  <div class = "col-sm-8 col-sm-offset-2">
+    <% if @flights.present? %>
+      <div class="table-responsive">
+        <table class = "table table-hover table-bordered">
+          <h1>Book a flight</h1>
+          <thead>
+            <tr>
+	            <th></th>
+              <th>Flight No.</th>
+	            <th>Departing From</th>
+	            <th>Destination</th>
+	            <th>Date</th>
+	            <th>Departure time</th>
+	            <th>Duration</th>
+	          </tr>
+          </thead>
 	
-	<%= form_tag(new_booking_path, method: "get") do %>
-	  <tbody>
-	    <% @flights.each do |flight| %>
-	      <tr>
-	        <td><%= radio_button_tag(:flight_id, flight.id, class: "flight_select")  %></td>
-			<td><%= flight.id %></td>
-			<td><%= flight.departure_airport.airport_code %></td>
-			<td><%= flight.arrival_airport.airport_code %></td>
-			<td><%= flight.departure_time.strftime("%d/%m/%Y") %></td>
-			<td><%= flight.departure_time.strftime("%H:%M") %></td>
-			<td><%= flight.duration %> hours</td>
-		  </tr>
-		<% end %>
-	  </tbody>
-    </table>
-
-      <%= hidden_field_tag(:passengers, (params[:passengers])) %>
-      <%= submit_tag "Continue", class: "btn btn-primary" %>
-  
+	      <%= form_tag(new_booking_path, method: "get") do %>
+	        <tbody>
+	          <% @flights.each do |flight| %>
+	            <tr>
+	              <td><%= radio_button_tag(:flight_id, flight.id, class: "flight_select")  %></td>
+			          <td><%= flight.id %></td>
+			          <td><%= flight.departure_airport.airport_code %></td>
+			          <td><%= flight.arrival_airport.airport_code %></td>
+			          <td><%= flight.departure_time.strftime("%d/%m/%Y") %></td>
+			          <td><%= flight.departure_time.strftime("%H:%M") %></td>
+			          <td><%= flight.duration %> hours</td>
+		          </tr>
+		        <% end %>
+	        </tbody>
+        </table>
+        <%= hidden_field_tag(:passengers, (params[:passengers])) %>
+      </div>
+        <%= submit_tag "Continue", class: "btn btn-primary" %>
+        <% end %>
     <% end %>
-    </div>
-  <% end %>
+  </div>
 </div>
