@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
         @booking.passengers.each do |passenger|
           PassengerMailer.thank_you_email(passenger).deliver_now
         end
+      flash[:success] = "Success!"
       redirect_to @booking
       else
         @flight = Flight.find(params[:flight_id])
